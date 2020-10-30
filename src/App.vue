@@ -1,28 +1,53 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="hero is-light is-fullheight">
+    <header>
+      <nav class="navbar has-background-warning is-fixed-top"
+      role="navigation" aria-label="main navigation">
+
+            <MarkIndicator />
+
+            <ImageFilter />
+
+      </nav>
+    </header>
+    <main class="hero-body mt-6 pt-6 is-light">
+      <router-view/>
+    </main>
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          Photos provided
+          <a href="https://www.pexels.com">by Pexels</a>
+        </p>
+      </div>
+    </footer>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import MarkIndicator from './components/MarkIndicator.vue';
+import ImageFilter from './components/ImageFilter.vue';
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld,
+    MarkIndicator,
+    ImageFilter,
+  },
+  created() {
+    this.$store.commit('updateMarkImages');
   },
 };
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="scss" scoped>
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.footer {
+  padding: 1rem;
+  background-color: #ffdd57;
 }
 </style>
