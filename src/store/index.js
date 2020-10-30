@@ -41,7 +41,7 @@ export default new Vuex.Store({
     },
     addQueryImages(state, payload) {
       state.queries[payload.query].photos
-        .splice((state.queries[payload.query].photos.length - 1), 0, ...payload.photos);
+        .splice((state.queries[payload.query].photos.length), 0, ...payload.photos);
     },
     updateQueryTotal(state, payload) {
       state.queries[payload.query].total = payload.total;
