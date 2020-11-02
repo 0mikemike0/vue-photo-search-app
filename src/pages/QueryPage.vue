@@ -23,56 +23,37 @@
 
 <script>
 import ImagesList from '@/components/ImagesList.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   components: {
     ImagesList,
   },
   computed: {
-    imagesData: {
-      get() {
-        return this.$store.getters.getPhotos(this.query)
-          ? this.$store.getters.getPhotos(this.query) : null;
-      },
-      set(value) {
-        this.imagesData = value;
-      },
+    ...mapGetters([
+      'getPhotos',
+      'getFails',
+    ]),
+    imagesData() {
+      return this.getPhotos(this.query) ? this.getPhotos(this.query) : null;
     },
-    images: {
-      get() {
-        return this.imagesData
-          ? this.imagesData.photos : [];
-      },
-      set(value) {
-        this.images = value;
-      },
+    images() {
+      return this.imagesData ? this.imagesData.photos : [];
     },
-    total: {
-      get() {
-        return this.imagesData
-          ? this.imagesData.total : 0;
-      },
-      set(value) {
-        this.total = value;
-      },
+    total() {
+      return this.imagesData ? this.imagesData.total : 0;
     },
-    nextPage: {
-      get() {
-        return this.imagesData
-          ? this.imagesData.nextPage : 0;
-      },
-      set(value) {
-        this.nextPage = value;
-      },
+    nextPage() {
+      return this.imagesData ? this.imagesData.nextPage : 0;
     },
     loading() {
-      return this.$store.getters.getFails.loading;
+      return this.getFails.loading;
     },
     loadingFail() {
-      return this.$store.getters.getFails.loadingFail;
+      return this.getFails.loadingFail;
     },
     addingFail() {
-      return this.$store.getters.getFails.addingFail;
+      return this.getFails.addingFail;
     },
     query() {
       return this.$route.params.query;
