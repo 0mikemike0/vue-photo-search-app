@@ -1,5 +1,5 @@
 <template>
-  <div class="container has-text-centered">
+  <div class="container has-text-centered" tabindex="-1">
 
     <div class="notification is-danger"
     v-if="loading">Загружаем...</div>
@@ -82,6 +82,11 @@ export default {
     gotoNextPage() {
       this.$store.dispatch('gotoNextPage', this.$route.params.query);
     },
+  },
+  created() {
+    if (!this.imagesData) {
+      this.$store.dispatch('loadImages', this.$route.params.query);
+    }
   },
 };
 </script>

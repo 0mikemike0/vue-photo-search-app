@@ -2,10 +2,11 @@
   <div class="field navbar-item">
     <button class="delete is-small" @click.prevent="clear()"></button>
     <p class="control">
-      <input class="input" type="text" placeholder="что ищем?"
+      <input class="input search-input" type="text" placeholder="что ищем?"
       v-model="currentQuery" @keydown.enter="search()">
     </p>
-    <button type="submit" class="button is-primary" @click.prevent="search()">Найти</button>
+    <button type="submit" class="button search-button is-primary"
+    @click.prevent="search()">Найти</button>
   </div>
 </template>
 
@@ -34,9 +35,14 @@ export default {
         this.$store.dispatch('loadImages', this.currentQuery);
         this.$router.push({ name: 'query', params: { query: this.currentQuery } });
       }
+      const button = document.querySelector('.search-button');
+      button.focus();
+      window.scrollTo(this.pageXOffset, 0);
     },
     clear() {
       this.currentQuery = '';
+      const input = document.querySelector('.search-input');
+      input.focus();
     },
   },
 };
