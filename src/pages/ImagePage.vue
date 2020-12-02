@@ -3,7 +3,7 @@
     <article class="media pt-1">
       <div class="media-content">
         <div class="content">
-          <picture v-if="image.src" class="is-centere">
+          <picture v-if="image.src" class="is-centered">
             <source media="(max-width: 799px)" :srcset="image.src.portrait">
             <source media="(min-width: 800px)" :srcset="image.src.landscape">
             <img :src="image.src.large" :alt="Photo">
